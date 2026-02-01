@@ -1,11 +1,11 @@
-FROM alpine:3.22 AS builder
+FROM alpine:3.23 AS builder
 ARG MDNS_REPEATER_VERSION=local
 ADD mdns-repeater.c mdns-repeater.c
 RUN set -ex && \
     apk add build-base
 RUN gcc -o /bin/mdns-repeater mdns-repeater.c -DHGVERSION=\"${MDNS_REPEATER_VERSION}\"
 
-FROM alpine:3.22
+FROM dhi.io/alpine-base:3.23-alpine3.23-dev
 
 LABEL maintainer="Avri Chen-Roth"
 
